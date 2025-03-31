@@ -31,7 +31,10 @@ function App() {
 
     fetch(api_endpoint, {
       method: 'POST',
-      body: formData
+      body: JSON.stringify(formData),
+      header: {
+        "Content-type": "application/json"
+      }
     })
       .then(res => res.json())
       .then(data => console.log(data))
