@@ -5,10 +5,10 @@ const api_endpoint = 'https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts'
 function App() {
 
   const [formData, setFormData] = useState({
-    author: '',
-    title: '',
-    body: '',
-    public: ''
+    author: "",
+    title: "",
+    body: "",
+    public: ""
   })
 
   function handleFormData(e) {
@@ -16,15 +16,15 @@ function App() {
 
     console.dir(e.target)
 
-    /*    const key = e.target.name
-       const value = e.trget.value
-   
-       console.log(key, value);
-   
-       setFormData({
-         ...formData, [key]: value
-       })
-    */
+    const key = e.target.name
+    const value = e.target.type === "checkbox" ? e.target.checked : e.trget.value
+
+    console.log(key, value);
+
+    setFormData({
+      ...formData, [key]: value
+    })
+
   }
 
   return (
@@ -63,7 +63,7 @@ function App() {
                     onChange={handleFormData}
                     required />
                   <div className="valid-feedback">
-                    Looks good!
+                    ben fatto!
                   </div>
                 </div>
 
