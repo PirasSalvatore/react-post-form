@@ -8,22 +8,33 @@ function App() {
     author: "",
     title: "",
     body: "",
-    public: ""
+    public: false
   })
 
   function handleFormData(e) {
-    e.preventDefault()
-
-    console.dir(e.target)
+    //console.dir(e.target)
 
     const key = e.target.name
-    const value = e.target.type === "checkbox" ? e.target.checked : e.trget.value
-
-    console.log(key, value);
+    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value
 
     setFormData({
       ...formData, [key]: value
     })
+
+  }
+
+  function handleFormDataSubmit(e) {
+    e.preventDefault()
+
+    console.log(formData);
+
+
+    fetch(api_endpoint, {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => console.log(data))
 
   }
 
@@ -41,7 +52,7 @@ function App() {
             </div>
             <div className="card-body">
 
-              <form className="row g-3 needs-validation">
+              <form className="row g-3 needs-validation" mothod='POST' onSubmit={handleFormDataSubmit}>
 
                 <div className="col-md-6">
                   <label htmlFor="author" className="form-label">il tuo nome</label>
